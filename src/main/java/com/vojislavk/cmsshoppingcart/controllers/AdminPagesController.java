@@ -1,6 +1,12 @@
 package com.vojislavk.cmsshoppingcart.controllers;
 
+import java.util.List;
+
+import com.vojislavk.cmsshoppingcart.models.PageRepository;
+import com.vojislavk.cmsshoppingcart.models.data.Page;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -8,8 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/pages")
 public class AdminPagesController {
 
+    private PageRepository pageRepo;
+
+    public AdminPagesController(PageRepository pageRepo) {
+        this.pageRepo = pageRepo;
+    }
+
     @GetMapping
-    public String index() {
+    public String index(Model model) {
+
+        List<Page> pages = pageRepo.findAll();
+
+        model.addAttribute("pages", pages);
+
         return "admin/pages/index";
     }
     
