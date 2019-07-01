@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -27,7 +29,7 @@ public class AdminCategoriesController {
     @GetMapping
     public String index(Model model) {
         
-        List<Category> categories = categoryRepo.findAll();
+        List<Category> categories = categoryRepo.findAllByOrderBySortingAsc();
 
         model.addAttribute("categories", categories);
 
@@ -125,6 +127,22 @@ public class AdminCategoriesController {
 
         return "redirect:/admin/categories";
         
+    }
+
+    @PostMapping("/reorder")
+    public @ResponseBody String reorder(@RequestParam("id[]") int[] id) {
+        
+        int count = 1;
+        Category category;
+
+        for (int categoryId : id) {
+            category = categoryRepo.getOne(categoryId);
+            category.setSorting(count);
+            categoryRepo.save(category);
+            count++;
+        }
+
+        return "ok";
     }
     
 }
