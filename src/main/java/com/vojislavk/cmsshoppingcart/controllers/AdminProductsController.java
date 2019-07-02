@@ -66,7 +66,7 @@ public class AdminProductsController {
         boolean fileOK = false;
         byte[] bytes = file.getBytes();
         String filename = file.getOriginalFilename();
-        Path path = Paths.get("src/main/resources/static");
+        Path path = Paths.get("src/main/resources/static/media/" + filename);
 
         if (filename.endsWith("jpg") || filename.endsWith("png") ) {
             fileOK = true;
@@ -94,7 +94,7 @@ public class AdminProductsController {
             Files.write(path, bytes);
         }
 
-        return "redirect:/admin/pages/add";
+        return "redirect:/admin/products/add";
     }
 
     
