@@ -1,6 +1,5 @@
 package com.vojislavk.cmsshoppingcart.controllers;
 
-import java.util.HashMap;
 import java.util.List;
 
 import com.vojislavk.cmsshoppingcart.models.CategoryRepository;
