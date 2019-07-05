@@ -2,7 +2,9 @@ package com.vojislavk.cmsshoppingcart;
 
 import java.util.List;
 
+import com.vojislavk.cmsshoppingcart.models.CategoryRepository;
 import com.vojislavk.cmsshoppingcart.models.PageRepository;
+import com.vojislavk.cmsshoppingcart.models.data.Category;
 import com.vojislavk.cmsshoppingcart.models.data.Page;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +18,18 @@ public class Common {
     @Autowired
     private PageRepository pageRepo;
 
+    @Autowired
+    private CategoryRepository categoryRepo;
+
     @ModelAttribute
     public void sharedData(Model model) {
 
         List<Page> pages = pageRepo.findAllByOrderBySortingAsc();
 
+        List<Category> categories = categoryRepo.findAll();
+
         model.addAttribute("cpages", pages);
-        
+        model.addAttribute("ccategories", categories);
     }
 
     
