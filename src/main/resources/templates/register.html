@@ -40,7 +40,7 @@
         
                     <div class="form-group">
                         <label for="">E-mail:</label>
-                        <input type="text" class="form-control" th:field="*{email}" placeholder="E-mail">
+                        <input type="email" class="form-control" th:field="*{email}" placeholder="E-mail" required>
                         <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                     </div>
 
