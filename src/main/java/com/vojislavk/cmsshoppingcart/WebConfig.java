@@ -16,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-            .addResourceHandler("/media/**")
+            .addResourceHandler("/src/main/resources/static/media**")
             .addResourceLocations("file:/C:/Users/Voja/Desktop/cmsshoppingcart/src/main/resources/static/media/");
     }
     
